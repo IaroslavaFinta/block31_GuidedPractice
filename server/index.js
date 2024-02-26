@@ -7,7 +7,7 @@ const pg = require('pg');
 const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/acme_notes_db');
 
 // static routes here (you only need these for deployment)
-// app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // app routes here
 // need to tell express how to send our note data from our database on to our application when it's requested
@@ -16,7 +16,7 @@ const client = new pg.Client(process.env.DATABASE_URL || 'postgres://localhost/a
 // Declare another variable named response and assign it to an awaited client.query(SQL)
 // Declare another variable named response and assign it to an awaited client.query(SQL)
 // SQL variable, we want to get all of our notes from the notes table, using a "raw" SQL query, as if we were in psql
-// app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '../client/dist/index.html')));
+app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '../client/dist/index.html')));
 app.get('/api/notes', async (req, res, next) => {
     try {
       const SQL = `SELECT * from notes;`;
